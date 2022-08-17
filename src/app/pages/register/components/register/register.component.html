@@ -1,0 +1,31 @@
+<p class="text-sm mb-5 text-center">*Hesabınızı oluşturmak için bilgileri eksiksiz doldurunuz.</p>
+<div class="grid formgrid p-fluid">
+    <div class="field mb-5 col-12">
+        <span class="p-float-label">
+            <input id="float-input-invalid" type="text" pInputText class="ng-invalid ng-dirty" [(ngModel)]="username" />
+            <label for="float-input-invalid">Kullanıcı Adı</label>
+            <small id="username2-help" class="p-error block">Username is not
+                available.</small>
+        </span>
+    </div>
+    <div class="field mb-5 col-12">
+        <span class="p-float-label">
+            <input id="float-input-invalid" type="email" pInputText class="ng-invalid ng-dirty" [(ngModel)]="email" />
+            <label for="float-input-invalid">Email</label>
+            <small id="username2-help" class="p-error block">Username is not
+                available.</small>
+        </span>
+    </div>
+    <div class="field mb-5 col-12">
+        <span class="p-float-label">
+            <input id="float-input-invalid" type="password" pInputText class="ng-invalid ng-dirty" [(ngModel)]="password"/>
+            <label for="float-input-invalid">Şifre</label>
+            <small id="username2-help" class="p-error block">Username is not
+                available.</small>
+        </span>
+    </div>
+
+    <div class="col-12 flex justify-content-end">
+        <button pButton pRipple label="Kayıt Ol" class="w-auto mt-3" (click)="saveUser()"></button>
+    </div>
+</div>
