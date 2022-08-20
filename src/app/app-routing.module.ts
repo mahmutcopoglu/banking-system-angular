@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppMainComponent } from './app-main.component';
-import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/components/login/login.component';
 import { RegisterComponent } from './pages/register/components/register/register.component';
+import { AuthGuard } from './security/guards/auth.guard';
 
 const routes: Routes = [];
 
@@ -11,15 +11,44 @@ const routes: Routes = [];
   imports: [RouterModule.forRoot([
     {
       path: '',
+      canActivate: [AuthGuard],
       component: AppMainComponent,
       children: [
-        // {
-        //   path: 'register',
-        //   loadChildren: () =>
-        //     import('../app/pages/register/register.module').then(
-        //       (m) => m.RegisterModule
-        //     )
-        // }
+        {
+          path: '',
+          loadChildren: () =>
+            import('../app/pages/home/home.module').then(
+              (m) => m.HomeModule
+            )
+        },
+        {
+          path: 'account',
+          loadChildren: () =>
+            import('../app/pages/account-detail/account-detail.module').then(
+              (m) => m.AccountDetailModule
+            )
+        },
+        {
+          path: 'accounts',
+          loadChildren: () =>
+            import('../app/pages/accounts/accounts.module').then(
+              (m) => m.AccountsModule
+            )
+        },
+        {
+          path: 'users',
+          loadChildren: () =>
+            import('../app/pages/users/users.module').then(
+              (m) => m.UsersModule
+            )
+        },
+        {
+          path: 'banks',
+          loadChildren: () =>
+            import('../app/pages/banks/banks.module').then(
+              (m) => m.BanksModule
+            )
+        }
     ]
 
     },

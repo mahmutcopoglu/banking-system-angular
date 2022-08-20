@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterComponent } from 'src/app/pages/register/components/register/register.component';
+import { AuthService } from 'src/app/security/services/auth.service';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
     private messageService: MessageService,
     public dialogService: DialogService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +35,8 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(this.requestModel).subscribe(
       (response: any) => {
         if(response.success){
+          this.authService.storeToken(response.token);
+          this.authService.setUsername(this.username)
           this.messageService.add({severity: 'success', summary: 'Başarılı', detail: 'Giriş başarılı anasayfaya yönlendiriliyorsunuz.'})
           this.router.navigate(['']);
         }

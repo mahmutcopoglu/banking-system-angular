@@ -8,12 +8,12 @@ const ROOT_PATH = environment.requestRoot;
 @Injectable({
     providedIn: 'root'
 })
-export class LoginService {
+export class HomeService {
 
     constructor(private http: HttpClient){}
 
-    loginUser(loginData: any): Observable<any> {
-        return this.http.post<any>(ROOT_PATH + '/login', loginData).pipe(
+    getAccounts(): Observable<any> {
+        return this.http.get<any>(ROOT_PATH + '/accounts').pipe(
             catchError(err => {
                 return throwError(err)
             })

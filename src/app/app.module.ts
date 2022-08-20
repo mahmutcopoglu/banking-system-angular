@@ -8,26 +8,49 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './pages/login/login.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {ToastModule} from 'primeng/toast';
+import { StyleClassModule } from 'primeng/styleclass';
+import { SharedModule } from 'primeng/api';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { TabViewModule } from 'primeng/tabview';
+import { HomeModule } from './pages/home/home.module';
+import { AuthenticationInterceptorService } from './security/interceptors/auth.interceptor';
+import { CommonModule } from '@angular/common';
+import { AccountDetailModule } from './pages/account-detail/account-detail.module';
+import { AccountsModule } from './pages/accounts/accounts.module';
+import { UsersModule } from './pages/users/users.module';
+import { BanksModule } from './pages/banks/banks.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppMainComponent
+    AppMainComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
     BrowserAnimationsModule,
     ButtonModule,
+    StyleClassModule,
     RippleModule,
+    TabViewModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    SharedModule,
+    HomeModule,
+    AccountDetailModule,
+    AccountsModule,
+    UsersModule,
+    BanksModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi:true},
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
