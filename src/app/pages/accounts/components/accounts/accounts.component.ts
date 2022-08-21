@@ -18,7 +18,7 @@ export class AccountsComponent implements OnInit {
 
   getAccounts(){
     this.accountsService.getAccounts().subscribe((response: any) => {
-      this.accounts = response;
+      this.accounts = response.data;
     })
   }
 
