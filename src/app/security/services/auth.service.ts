@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { CookieService } from "ngx-cookie-service";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
+import { ProfileService } from "src/app/pages/profile/services/profile.service";
 
 const ROOT_PATH = environment.requestRoot;
 
@@ -12,10 +13,13 @@ const ROOT_PATH = environment.requestRoot;
     providedIn: 'root'
 })
 export class AuthService {
-
+    userRoles: any = []
     constructor(private http: HttpClient,
         private cookieService: CookieService,
-        private router: Router){}
+        private profileService: ProfileService,
+        private router: Router){
+            
+        }
 
     storeToken(token:string){
     
@@ -44,6 +48,34 @@ export class AuthService {
     doLogout(){
         this.removeToken();
         this.router.navigate(['login']);
+        
     }
+
+    hasPermission(roleName: string): Promise<boolean> {
+		return this.loadPermissions().then((rp: any) => {
+			
+			
+			return (
+				this.userRoles.includes(roleName)
+			);
+		});
+	}
+
+    loadPermissions(): Promise<string[]> {
+		if (this.userRoles.length==0) {
+			return this.http
+				.get(
+					ROOT_PATH + '/user/profile'
+				)
+				.toPromise()
+				.then((rp: any) => {
+					this.userRoles = rp.authorities;
+					return this.userRoles;
+				});
+		} else {
+			return Promise.resolve(this.userRoles);
+		}
+	}
+
 
 }

@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
           this.authService.setUsername(this.username)
           this.messageService.add({severity: 'success', summary: 'Başarılı', detail: 'Giriş başarılı anasayfaya yönlendiriliyorsunuz.'})
           this.router.navigate(['']);
+     
         }
       }
     )

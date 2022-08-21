@@ -48,6 +48,13 @@ const routes: Routes = [];
             import('../app/pages/banks/banks.module').then(
               (m) => m.BanksModule
             )
+        },
+        {
+          path: 'profile',
+          loadChildren: () =>
+            import('../app/pages/profile/profile.module').then(
+              (m) => m.ProfileModule
+            )
         }
     ]
 

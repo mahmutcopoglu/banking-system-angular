@@ -74,15 +74,21 @@
                 {{account.number}}
             </td>
             <td>
-                <span class="image-text">{{account.creation_date | date: 'dd.MM.yyyy HH.ss'}}</span>
+                <span class="image-text">{{account.creation_date | date: 'dd.MM.yyyy HH:mm'}}</span>
             </td>
             <td>
-                <span class="image-text">{{account.last_update_date | date: 'dd.MM.yyyy HH.ss'}}</span>
+                <span class="image-text">{{account.last_update_date | date: 'dd.MM.yyyy HH:mm'}}</span>
             </td>
             <td>
                 {{account.type}}
             </td>
-            <td>
+            <td *ngIf="account.type=='TRY'">
+                {{account.balance | currency:"TRY":'₺'}}
+            </td>
+            <td *ngIf="account.type=='USD'">
+                {{account.balance | currency}}
+            </td>
+            <td *ngIf="account.type=='ALTIN'">
                 {{account.balance}}
             </td>
             <td *ngIf="account.deleted">
@@ -102,7 +108,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
-            <td colspan="8">Hesabınız bulunmamaktadır.</td>
+            <td colspan="9">Hesabınız bulunmamaktadır.</td>
         </tr>
     </ng-template>
 </p-table>

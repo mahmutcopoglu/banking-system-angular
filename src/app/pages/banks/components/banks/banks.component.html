@@ -1,5 +1,5 @@
 
-<div class="col-12 flex justify-content-end">
+<div *ngIf="isCreateBank" class="col-12 flex justify-content-end">
     <button pButton pRipple label="Yeni Banka" icon="pi pi-plus-circle" class="w-auto" (click)="newBank()"></button>
 </div>
 <p-table #dt [value]="banks" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"

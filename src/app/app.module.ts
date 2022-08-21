@@ -21,6 +21,7 @@ import { AccountDetailModule } from './pages/account-detail/account-detail.modul
 import { AccountsModule } from './pages/accounts/accounts.module';
 import { UsersModule } from './pages/users/users.module';
 import { BanksModule } from './pages/banks/banks.module';
+import { ProfileModule } from './pages/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BanksModule } from './pages/banks/banks.module';
     AccountDetailModule,
     AccountsModule,
     UsersModule,
-    BanksModule
+    BanksModule,
+    ProfileModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi:true},

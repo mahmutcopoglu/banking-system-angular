@@ -10,11 +10,13 @@ import { RegisterService } from '../../services/register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  username: any;
-  password: any;
-  email: any;
+  username: string = '';
+  password: string = '';
+  email: string = '';
 
   requestModel: any = {}
+
+  submitted: boolean = false
   constructor(private registerService: RegisterService,
     private messageService: MessageService,
     public ref: DynamicDialogRef) { }
@@ -23,6 +25,16 @@ export class RegisterComponent implements OnInit {
   }
 
   saveUser(){
+    this.submitted = true
+    if(this.username==''){
+      return;
+    }
+    if(this.email==''){
+      return;
+    }
+    if(this.password==''){
+      return;
+    }
     this.requestModel.username = this.username;
     this.requestModel.email = this.email;
     this.requestModel.password = this.password;

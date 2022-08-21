@@ -10,9 +10,11 @@ import { HomeService } from '../../services/home.service';
 export class HomeComponent implements OnInit {
 
   accounts: any = []
+  username: any;
   constructor(private homeService: HomeService,
     private router: Router) {
     this.getAccounts();
+    this.username = localStorage.getItem('username')
    }
 
   ngOnInit(): void {

@@ -10,9 +10,13 @@ import { AuthService } from 'src/app/security/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   username: any;
+  isCreateBank:boolean=false;
   constructor(private authService: AuthService,
     private router: Router) {
     this.username = localStorage.getItem('username');
+     this.authService.hasPermission("CREATE_BANK").then(x=>{
+      this.isCreateBank=x;
+    });
    }
 
   ngOnInit(): void {
@@ -37,6 +41,14 @@ export class NavbarComponent implements OnInit {
   routeBanks(){
     this.router.navigate(['banks'])
   }
+
+  routeProfile(){
+    this.router.navigate(['profile'])
+  }
+
+  
+
+
 
   
 
