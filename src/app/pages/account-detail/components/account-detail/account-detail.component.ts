@@ -48,6 +48,7 @@ export class AccountDetailComponent implements OnInit {
       if(response.success){
         this.messageService.add({severity: 'success', summary: 'Başarılı', detail: 'Hesabınıza başarılı bir şekilde para yüklediniz.'})
         this.addAmount = false;
+        this.amount = ''
         this.getAccount()
       }else{
         this.messageService.add({severity: 'error', summary: 'Hata', detail: 'Para yüklemede bir sorun oluştu.'})
@@ -63,6 +64,8 @@ export class AccountDetailComponent implements OnInit {
       if(response.success){
         this.messageService.add({severity: 'success', summary: 'Başarılı', detail: response.message})
         this.transferMoney = false;
+        this.transferAmount = ''
+        this.receiverAccountId = ''
         this.getAccount()
       }else{
         this.messageService.add({severity: 'error', summary: 'Hata', detail: 'Transfer işleminde bir hata oluştu.'})

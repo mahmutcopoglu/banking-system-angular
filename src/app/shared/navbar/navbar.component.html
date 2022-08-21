@@ -9,7 +9,12 @@
            
             <li (click)="routeAccounts()">
                 <a pRipple class="flex px-0 lg:px-5 py-3 hover:text-indigo-100 font-medium transition-colors transition-duration-150">
-                    <span>Hesaplar</span>
+                    <span>Hesaplarım</span>
+                </a>
+            </li>
+             <li *ngIf="removeAccount" (click)="routeAllAccounts()">
+                <a pRipple class="flex px-0 lg:px-5 py-3 hover:text-indigo-100 font-medium transition-colors transition-duration-150">
+                    <span>Tüm Hesaplar</span>
                 </a>
             </li>
             <li (click)="routeBanks()">

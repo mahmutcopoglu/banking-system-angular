@@ -19,6 +19,8 @@ import {TableModule} from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { NewAccountComponent } from './components/new-account/new-account.component';
 import {DropdownModule} from 'primeng/dropdown';
+import { AllAccountsComponent } from './components/all-accounts/all-accounts.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   imports: [
@@ -37,12 +39,14 @@ import {DropdownModule} from 'primeng/dropdown';
     InputNumberModule,
     TableModule,
     TagModule,
-    DropdownModule
+    DropdownModule,
+    ConfirmDialogModule
     
   ],
   declarations: [
     AccountsComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    AllAccountsComponent
   ],
   providers:[
     MessageService,

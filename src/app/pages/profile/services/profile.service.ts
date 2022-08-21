@@ -13,7 +13,7 @@ export class ProfileService {
     constructor(private http: HttpClient){}
 
     getUserDetail(): Observable<any> {
-        return this.http.get<any>(ROOT_PATH + '/user/profile').pipe(
+        return this.http.get<any>(ROOT_PATH + '/user').pipe(
             catchError(err => {
                 return throwError(err)
             })

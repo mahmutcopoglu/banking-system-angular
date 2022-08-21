@@ -13,7 +13,7 @@ export class AccountsService {
     constructor(private http: HttpClient){}
 
     getAccounts(): Observable<any> {
-        return this.http.get<any>(ROOT_PATH + '/accounts').pipe(
+        return this.http.get<any>(ROOT_PATH + '/accounts/user').pipe(
             catchError(err => {
                 return throwError(err)
             })
@@ -30,6 +30,22 @@ export class AccountsService {
 
     saveAccount(data: any): Observable<any> {
         return this.http.post<any>(ROOT_PATH + '/account',data).pipe(
+            catchError(err => {
+                return throwError(err)
+            })
+        )
+    }
+
+    getAllAccounts(): Observable<any> {
+        return this.http.get<any>(ROOT_PATH + '/accounts').pipe(
+            catchError(err => {
+                return throwError(err)
+            })
+        )
+    }
+
+    removeAccount(id: any):Observable<any> {
+        return this.http.delete<any>(ROOT_PATH + `/account/${id}`).pipe(
             catchError(err => {
                 return throwError(err)
             })

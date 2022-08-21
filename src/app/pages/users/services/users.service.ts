@@ -28,6 +28,14 @@ export class UsersService {
         )
     }
 
+    getAccountByUserId(id: any): Observable<any> {
+        return this.http.get<any>(ROOT_PATH + `/accounts/user/${id}`).pipe(
+            catchError(err => {
+                return throwError(err)
+            })
+        )
+    }
+
     changeEnabledUser(id: any, data:any): Observable<any> {
         return this.http.post<any>(ROOT_PATH + `/users/${id}`,data).pipe(
             catchError(err => {

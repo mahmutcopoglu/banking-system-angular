@@ -11,6 +11,7 @@ import { UsersService } from '../../services/users.service';
 export class UserDetailComponent implements OnInit {
   id: any;
   user: any = {};
+  userAccounts: any = []
   requestModel: any = {}
   constructor(private usersService: UsersService,
     private route: ActivatedRoute,
@@ -22,12 +23,19 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser()
+    this.getUserAccount();
   }
 
   getUser(){
     this.usersService.getUserDetailById(this.id).subscribe((response: any) => {
       this.user = response;
       this.user.authorities = response.authorities.split(",")
+    })
+  }
+
+  getUserAccount(){
+    this.usersService.getAccountByUserId(this.id).subscribe((response: any) => {
+      this.userAccounts = response.data;
     })
   }
 

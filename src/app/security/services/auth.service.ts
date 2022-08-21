@@ -46,6 +46,7 @@ export class AuthService {
 
 
     doLogout(){
+        this.userRoles = []
         this.removeToken();
         this.router.navigate(['login']);
         
@@ -53,8 +54,6 @@ export class AuthService {
 
     hasPermission(roleName: string): Promise<boolean> {
 		return this.loadPermissions().then((rp: any) => {
-			
-			
 			return (
 				this.userRoles.includes(roleName)
 			);
@@ -65,7 +64,7 @@ export class AuthService {
 		if (this.userRoles.length==0) {
 			return this.http
 				.get(
-					ROOT_PATH + '/user/profile'
+					ROOT_PATH + '/user'
 				)
 				.toPromise()
 				.then((rp: any) => {

@@ -10,12 +10,12 @@ import { AuthService } from 'src/app/security/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   username: any;
-  isCreateBank:boolean=false;
+  removeAccount:boolean=false;
   constructor(private authService: AuthService,
     private router: Router) {
     this.username = localStorage.getItem('username');
-     this.authService.hasPermission("CREATE_BANK").then(x=>{
-      this.isCreateBank=x;
+     this.authService.hasPermission("REMOVE_ACCOUNT").then(x=>{
+      this.removeAccount=x;
     });
    }
 
@@ -44,6 +44,10 @@ export class NavbarComponent implements OnInit {
 
   routeProfile(){
     this.router.navigate(['profile'])
+  }
+
+  routeAllAccounts(){
+    this.router.navigate(['accounts/all'])
   }
 
   
