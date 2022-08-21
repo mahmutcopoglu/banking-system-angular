@@ -11,11 +11,15 @@ export class NavbarComponent implements OnInit {
 
   username: any;
   removeAccount:boolean=false;
+  activateDeactivateUser:boolean = false;
   constructor(private authService: AuthService,
     private router: Router) {
     this.username = localStorage.getItem('username');
      this.authService.hasPermission("REMOVE_ACCOUNT").then(x=>{
       this.removeAccount=x;
+    });
+    this.authService.hasPermission("ACTIVATE_DEACTIVATE_USER").then(x=>{
+      this.activateDeactivateUser=x;
     });
    }
 

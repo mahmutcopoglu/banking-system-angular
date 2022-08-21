@@ -22,7 +22,7 @@
                     <span>Bankalar</span>
                 </a>
             </li>
-             <li (click)="routeUsers()">
+             <li *ngIf="activateDeactivateUser" (click)="routeUsers()">
                 <a pRipple class="flex px-0 lg:px-5 py-3 hover:text-indigo-100 font-medium transition-colors transition-duration-150">
                     <span>Kullanıcılar</span>
                 </a>

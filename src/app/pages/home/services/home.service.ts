@@ -13,7 +13,7 @@ export class HomeService {
     constructor(private http: HttpClient){}
 
     getAccounts(): Observable<any> {
-        return this.http.get<any>(ROOT_PATH + '/accounts').pipe(
+        return this.http.get<any>(ROOT_PATH + '/accounts/user').pipe(
             catchError(err => {
                 return throwError(err)
             })
